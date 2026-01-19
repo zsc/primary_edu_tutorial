@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <ul class="nav-list"><li class=""><a href="index.html">《从无人机到火箭：打通物理×数学×生物的初中科学教程》Index</a></li><li class=""><a href="chapter1.html">Chapter 1｜科学的共同语言：量、单位、误差与数量级</a></li><li class=""><a href="chapter2.html">Chapter 2｜坐标与运动：用函数描述飞行轨迹</a></li><li class="active"><a href="CLAUDE.html">Untitled</a></li></ul>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <p>（交流可以用英文，所有文档中文）</p>
+<h2 id="_1">项目背景</h2>
+<p>输出一个面向中国初中生的物理数学生物的系统的中文 markdown教程。 要做到学科间打通。举例都结合无人机、火箭等太空科技、人体/环境等。</p>
+<p>文件组织是 index.md + chapter1.md + ...
+不写代码。
+提供 rule-of-thumb。</p>
+<h2 id="_2">章节结构要求</h2>
+<p>每个章节应包含：</p>
+<ol>
+<li><strong>开篇段落</strong>：简要介绍本章内容和学习目标</li>
+<li><strong>文字论述</strong>：以文字论述为主，适当配上ASCII 图说明。</li>
+<li><strong>本章小结</strong>：总结关键概念和公式</li>
+<li><strong>练习题</strong>：
+   - 每章包含6-8道练习题
+   - 50%基础题（帮助熟悉材料）
+   - 50%挑战题（包括开放性思考题）
+   - 每题提供提示（Hint）
+   - 答案默认折叠，不包含代码</li>
+<li><strong>常见陷阱与错误</strong> (Gotchas)：每章包含该主题的常见错误和调试技巧</li>
+</ol>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter2.html" class="nav-link prev">← Chapter 2｜坐标与运动：用函数描述飞行轨迹</a></nav>
+        </main>
+    </div>
+</body>
+</html>

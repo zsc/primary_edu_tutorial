@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>Chapter 1｜科学的共同语言：量、单位、误差与数量级</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <ul class="nav-list"><li class=""><a href="index.html">《从无人机到火箭：打通物理×数学×生物的初中科学教程》Index</a></li><li class="active"><a href="chapter1.html">Chapter 1｜科学的共同语言：量、单位、误差与数量级</a></li><li class=""><a href="chapter2.html">Chapter 2｜坐标与运动：用函数描述飞行轨迹</a></li><li class=""><a href="CLAUDE.html">Untitled</a></li></ul>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="chapter-1">Chapter 1｜科学的共同语言：量、单位、误差与数量级</h1>
+<h2 id="1">1. 开篇：巴别塔与火星探测器</h2>
+<p>在《圣经》故事中，人类想建造通往天堂的巴别塔，上帝为了阻止他们，让人类说不同的语言，导致沟通失败，塔也荒废了。</p>
+<p>在现代科学与工程中，类似的悲剧依然会上演。<strong>1999年，美国宇航局（NASA）的火星气候探测者号（Mars Climate Orbiter）</strong> 在抵达火星轨道时突然失联，最终在大气层中烧毁。
+原因令人啼笑皆非：</p>
+<ul>
+<li>负责设计推进器的洛克希德·马丁公司使用了<strong>英制单位</strong>（磅力，lbf）；</li>
+<li>负责导航的NASA喷气推进实验室使用了<strong>公制单位</strong>（牛顿，N）；</li>
+<li>双方没有进行转换。</li>
+</ul>
+<p>仅仅因为“单位语言”不通，价值 3.27 亿美元的航天器化为灰烬。</p>
+<p><strong>本章的目标</strong>，就是构建物理、数学、生物这三门学科的“通用语言”。无论你是要计算无人机的电池能撑多久（工程），还是要测量红细胞在显微镜下的大小（生物），抑或是推导行星的轨道（物理），你都必须遵循这套规则：<strong>定义物理量、统一单位、管理误差、理解数量级。</strong></p>
+<hr />
+<h2 id="2-si">2. 物理量与国际单位制 (SI)</h2>
+<h3 id="21">2.1 物理量：数值 × 单位</h3>
+<p>科学不仅是定性描述（“这架无人机飞得很快”），更是定量描述（“这架无人机速度为 20 m/s”）。
+一个完整的物理量（Physical Quantity）必须包含两部分：
+$$ Q = \{N\} \times [U] $$</p>
+<ul>
+<li>$\{N\}$ 是数值（Number）</li>
+<li>$[U]$ 是单位（Unit）</li>
+</ul>
+<blockquote>
+<p><strong>⚠️ 常见的错误</strong>：
+“这根横梁长度是 3。” —— 错了。是 3 米？3 厘米？还是 3 光年？没有单位的数字在工程中是毫无意义的垃圾数据。</p>
+</blockquote>
+<h3 id="22-si">2.2 七大基石：SI 基本单位</h3>
+<p>为了避免火星探测器那样的悲剧，国际科学界约定了<strong>国际单位制 (SI)</strong>。在初中阶段，我们主要打交道的是前三个，加上生物/化学中常用的摩尔，以及电路中的安培。</p>
+<p>| 物理量 | 符号 | SI 单位 | 符号 | 重新认识这些量 (Rule of Thumb) |</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">物理量</th>
+<th style="text-align: left;">符号</th>
+<th style="text-align: left;">SI 单位</th>
+<th style="text-align: left;">符号</th>
+<th style="text-align: left;">重新认识这些量 (Rule of Thumb)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>长度</strong></td>
+<td style="text-align: left;">$L, x, h$</td>
+<td style="text-align: left;">米</td>
+<td style="text-align: left;"><strong>m</strong></td>
+<td style="text-align: left;"><strong>工程感</strong>：成年人一步约 0.7m；教室门高约 2m。<br><strong>生物感</strong>：一段 DNA 螺旋的直径约 $2 \times 10^{-9}$ m。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>质量</strong></td>
+<td style="text-align: left;">$m, M$</td>
+<td style="text-align: left;">千克</td>
+<td style="text-align: left;"><strong>kg</strong></td>
+<td style="text-align: left;"><strong>工程感</strong>：1L 纯水正好 1kg；大疆 Mavic 3 无人机约 0.9kg。<br><strong>生物感</strong>：普通初中生约 50kg。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>时间</strong></td>
+<td style="text-align: left;">$t$</td>
+<td style="text-align: left;">秒</td>
+<td style="text-align: left;"><strong>s</strong></td>
+<td style="text-align: left;"><strong>生物感</strong>：静息心跳一次约 0.8s。<br><strong>物理感</strong>：光走过 30cm 需要 1ns ($10^{-9}$s)。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>电流</strong></td>
+<td style="text-align: left;">$I$</td>
+<td style="text-align: left;">安培</td>
+<td style="text-align: left;"><strong>A</strong></td>
+<td style="text-align: left;"><strong>工程感</strong>：手机充电约 1A-2A；无人机电机全速转动可能超过 20A。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>热力学温度</strong></td>
+<td style="text-align: left;">$T$</td>
+<td style="text-align: left;">开尔文</td>
+<td style="text-align: left;"><strong>K</strong></td>
+<td style="text-align: left;">$0^\circ C = 273.15 K$。太空中虽然冷，但不是 0K。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>物质的量</strong></td>
+<td style="text-align: left;">$n$</td>
+<td style="text-align: left;">摩尔</td>
+<td style="text-align: left;"><strong>mol</strong></td>
+<td style="text-align: left;">化学与生物计数的“打包单位”。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23">2.3 导出单位：用基石搭建大厦</h3>
+<p>世界不仅有长、宽、高。通过数学运算，我们可以组合出新的量。这些叫<strong>导出单位</strong>。</p>
+<ul>
+<li><strong>速度 ($v$)</strong> = 长度 $\div$ 时间 $\rightarrow$ $m/s$</li>
+<li><strong>加速度 ($a$)</strong> = 速度 $\div$ 时间 $\rightarrow$ $m/s^2$</li>
+<li><strong>力 ($F$)</strong> = 质量 $\times$ 加速度 $\rightarrow$ $kg \cdot m/s^2$ (这就叫<strong>牛顿, N</strong>)</li>
+<li><strong>压强 ($P$)</strong> = 力 $\div$ 面积 $\rightarrow$ $N/m^2$ (这就叫<strong>帕斯卡, Pa</strong>)</li>
+</ul>
+<blockquote>
+<p><strong>思维工具：维度一致性</strong>
+当你看到压强单位是 $Pa$，你要立刻反应过来：它的本质是“每一平方米上压了多少牛顿的力”。这能帮助你理解物理公式的本质。</p>
+</blockquote>
+<hr />
+<h2 id="3">3. 数量级：从微观细胞到宏观太空</h2>
+<p>人类的大脑很难处理太多“零”。</p>
+<ul>
+<li>红细胞直径：0.000008 m</li>
+<li>地月距离：384000000 m</li>
+</ul>
+<p>为了不发疯，我们使用<strong>科学计数法 ($a \times 10^n$)</strong> 和<strong>数量级 (Orders of Magnitude)</strong>。</p>
+<h3 id="31-the-scale-ladder">3.1 宇宙的尺度阶梯 (The Scale Ladder)</h3>
+<p>让我们把本教程涉及的三大领域放在同一把尺子上：</p>
+<div class="codehilite"><pre><span></span><code> 尺度 (m) |  领域   |  典型物体
+------------------------------------------------------------
+  10^8    |  天文   |  地月距离 (3.84×10^8)
+  10^7    |  天文   |  地球直径 (1.27×10^7)
+  10^6    |  航天   |  中国空间站轨道高度 (4×10^5 ~ 10^6)
+  10^5    |  地理   |  北京到天津的距离
+  10^4    |  航空   |  民航客机巡航高度 (10km) / 马里亚纳海沟
+  10^3    |  地形   |  泰山高度 (1545m)
+  10^2    |  工程   |  长征五号火箭高度 (57m) / 足球场长度
+  10^1    |  生物   |  蓝鲸长度 (30m)
+  10^0    |  日常   |  人类身高 (1.7m) / 无人机轴距 (0.4m)
+  10^-1   |  日常   |  手机长度 / 手掌宽
+  10^-2   |  工程   |  无人机螺旋桨宽度 / 指甲盖 (cm)
+  10^-3   |  昆虫   |  蚂蚁长度 / 机械零件公差 (mm)
+  10^-4   |  生物   |  人类头发直径 (约 80μm)
+  10^-5   |  生物   |  红细胞 (8μm) / 气溶胶颗粒
+  10^-6   |  微观   |  细菌 (1μm) / 芯片制程节点
+  10^-9   |  分子   |  DNA直径 (nm)
+</code></pre></div>
+
+<h3 id="32-fermi-estimation">3.2 费米估算 (Fermi Estimation)</h3>
+<p>物理学家费米擅长用极少的数据估算出准确的结果。这种能力叫“费米估算”。
+<strong>核心技巧</strong>：把复杂的难题拆解成几个你能大概猜到的常数。</p>
+<p><strong>案例：人一辈子心脏跳多少次？</strong></p>
+<ol>
+<li><strong>拆解</strong>：一生心跳 = (心率/分钟) $\times$ (分钟/小时) $\times$ (小时/天) $\times$ (天/年) $\times$ (寿命)。</li>
+<li><strong>取整估算</strong>（只看数量级）：<ul>
+<li>心率 $\approx 60 \sim 100$ $\rightarrow$ 算 $10^2$ 次/分</li>
+<li>寿命 $\approx 80$ 年 $\rightarrow$ 算 $10^2$ 年</li>
+<li>一年 $\approx 365 \times 24 \times 60$ 分钟 $\approx 5 \times 10^5$ 分钟</li>
+</ul>
+</li>
+<li><strong>计算</strong>：$10^2 \times 10^2 \times (5 \times 10^5) = 5 \times 10^9$ 次。<ul>
+<li><strong>结论</strong>：人一辈子心跳约 <strong>30亿次</strong>。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>工程应用</strong>：
+在设计火箭之前，工程师会先这样“算一卦”，看看需要多少燃料。如果算出来火箭比地球还重，那就直接放弃方案，不用进电脑模拟了。</p>
+</blockquote>
+<hr />
+<h2 id="4">4. 误差、精度与准确度</h2>
+<p>在数学课上，$1/3 = 0.3333...$ 是无限循环的。
+但在科学实验中，你的尺子决定了你只能写 $0.33$。</p>
+<h3 id="41-accuracy-vs-precision">4.1 准确度 (Accuracy) vs 精密度 (Precision)</h3>
+<p>这是两个完全不同的概念，初学者最容易混淆。让我们用“打靶”来比喻：</p>
+<div class="codehilite"><pre><span></span><code>   (A) 准确且精密      (B) 精密但不准确      (C) 准确但不精密      (D) 既不准确也不精密
+    +-------+           +-------+           +-------+           +-------+
+    |       |           |   xx  |           |   x   |           |     x |
+    |   X   |           |   xx  |           | x X x |           |   x   |
+    |       |           |       |           |   x   |           | x     |
+    +-------+           +-------+           +-------+           +-------+
+   X = 靶心 (真值)      x = 弹着点 (测量值)
+</code></pre></div>
+
+<ul>
+<li><strong>情况 A (理想)</strong>：数据集中在真值附近。</li>
+<li><strong>情况 B (系统误差)</strong>：<strong>无人机案例</strong>。你的GPS定位非常稳定（都在同一个点），但地图坐标系设错了，导致所有点都偏离目标 100 米。这叫“高精密，低准确”。<strong>修正方法：校准（Calibration）。</strong></li>
+<li><strong>情况 C (偶然误差)</strong>：<strong>生物案例</strong>。你测血压，第一次 118，第二次 122，第三次 119。数值在真值 120 附近跳动。这是因为心脏跳动、血管弹性、测量时的呼吸导致的。<strong>修正方法：多次测量求平均。</strong></li>
+</ul>
+<h3 id="42-significant-figures">4.2 有效数字 (Significant Figures)</h3>
+<p><strong>Rule of Thumb</strong>：你的计算结果，不能比你最差的测量数据更精确。</p>
+<ul>
+<li><strong>错误示范</strong>：<ul>
+<li>用普通米尺量桌子长 $L=1.21$ m (3位有效数字)</li>
+<li>宽 $W=0.55$ m (2位有效数字)</li>
+<li>用计算器算面积：$1.21 \times 0.55 = 0.6655$</li>
+<li>报告写：面积是 $0.6655 m^2$ $\leftarrow$ <strong>这是撒谎！</strong></li>
+</ul>
+</li>
+<li><strong>正确做法</strong>：<ul>
+<li>受限于宽度的精度（2位），结果也只能保留2位。</li>
+<li>报告写：面积是 $0.67 m^2$。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="5">5. 维度分析：物理学的“作弊码”</h2>
+<p>当你考试时忘记了公式，或者想检查自己的推导对不对，<strong>维度分析 (Dimensional Analysis)</strong> 是最强工具。</p>
+<p><strong>原理</strong>：等号两边的单位必须在数学上相等。</p>
+<p><strong>案例：检验单摆周期公式</strong>
+你记得单摆摆动一次的时间 $T$ 和绳长 $L$、重力加速度 $g$ 有关。
+你猜想公式是 $T = 2\pi \sqrt{\frac{g}{L}}$ 还是 $T = 2\pi \sqrt{\frac{L}{g}}$ ？</p>
+<ol>
+<li>左边 $T$ 的单位是：时间 $[T]$。</li>
+<li>右边常数 $2\pi$ 没有单位。</li>
+<li>$L$ 的单位是 $[L]$，$g$ 的单位是 $[L]/[T]^2$。</li>
+<li>
+<p><strong>检查猜想 1</strong> $\sqrt{\frac{g}{L}}$：
+    $\sqrt{\frac{[L]/[T]^2}{[L]}} = \sqrt{\frac{1}{[T]^2}} = \frac{1}{[T]}$。
+    结果是“频率”，不是“时间”。<strong>公式错！</strong></p>
+</li>
+<li>
+<p><strong>检查猜想 2</strong> $\sqrt{\frac{L}{g}}$：
+    $\sqrt{\frac{[L]}{[L]/[T]^2}} = \sqrt{[T]^2} = [T]$。
+    单位是时间。<strong>公式（很可能）对！</strong></p>
+</li>
+</ol>
+<hr />
+<h2 id="6">6. 本章小结</h2>
+<ol>
+<li><strong>SI 单位制</strong>是科学界的通用协议。计算前必须把 km/h 换成 m/s，g 换成 kg。</li>
+<li><strong>数量级思维</strong>能帮你快速识别离谱的错误（如算出红细胞有 1米大）。</li>
+<li><strong>系统误差</strong>靠校准解决（偏差单一方向），<strong>偶然误差</strong>靠平均值解决（偏差随机）。</li>
+<li><strong>有效数字</strong>代表了你的自信程度，不要写出超过测量精度的数字。</li>
+<li><strong>维度分析</strong>是检查公式和推导的强力工具。</li>
+</ol>
+<hr />
+<h2 id="7">7. 练习题</h2>
+<h3 id="_1">基础题（热身）</h3>
+<p><strong>Q1 (单位换算):</strong> 
+SpaceX 星舰的猛禽发动机室压高达 300 bar (巴)。已知 1 bar $\approx 10^5$ Pa。请用科学计数法表示这个压强（单位 Pa）。</p>
+<details>
+<summary>提示与答案</summary>
+<ul>
+<li><strong>提示</strong>：$300 = 3 \times 10^2$。</li>
+<li><strong>答案</strong>：$300 \times 10^5 \text{ Pa} = 3 \times 10^2 \times 10^5 \text{ Pa} = 3 \times 10^7 \text{ Pa}$。</li>
+</ul>
+</details>
+<p><strong>Q2 (数量级直觉):</strong> 
+以下哪个物体的质量最接近 $10^{-3}$ kg？
+A. 一辆汽车   B. 一个成年人   C. 一枚硬币   D. 一粒灰尘</p>
+<details>
+<summary>提示与答案</summary>
+<ul>
+<li><strong>提示</strong>：$10^{-3}$ kg 就是 1克。想一想谁大约重几克。</li>
+<li><strong>答案</strong>：C。汽车($10^3$ kg)，人($10^1$ ~ $10^2$ kg)，灰尘($10^{-9}$ kg量级)。</li>
+</ul>
+</details>
+<p><strong>Q3 (有效数字):</strong> 
+在生物实验中，测量一片叶子的面积。底边长 $a = 5.0$ cm，高 $h = 2.44$ cm。根据三角形面积公式 $S = \frac{1}{2}ah$，计算结果应保留几位有效数字？</p>
+<details>
+<summary>提示与答案</summary>
+<ul>
+<li><strong>提示</strong>：乘除法运算中，结果的有效数字位数由“最少的那一个”决定。$5.0$ 是两位，$2.44$ 是三位。</li>
+<li><strong>答案</strong>：应保留 <strong>2位</strong>。计算值为 $6.1$ $cm^2$。</li>
+</ul>
+</details>
+<h3 id="_2">挑战题（跨学科迁移）</h3>
+<p><strong>Q4 (无人机 - 维度分析):</strong>
+无人机旋翼产生的升力 $F$ (单位 N, 即 $kg \cdot m/s^2$) 与空气密度 $\rho$ (单位 $kg/m^3$)、旋翼转速 $n$ (单位 转/s, 即 $1/s$)、旋翼直径 $D$ (单位 m) 有关。
+工程师提出了一个经验公式：$F = k \cdot \rho \cdot n^2 \cdot D^4$ ($k$是无单位常数)。
+请用维度分析检查这个公式对不对？如果不对，$D$ 的指数应该是多少？</p>
+<details>
+<summary>提示与答案</summary>
+<ul>
+<li><strong>提示</strong>：把右边的单位全写出来，看能不能凑成 $kg \cdot m/s^2$。</li>
+<li><strong>答案</strong>：<ul>
+<li>左边：$[M][L][T]^{-2}$</li>
+<li>右边原式：$([M][L]^{-3}) \cdot ([T]^{-1})^2 \cdot ([L])^4 = [M] \cdot [L]^{-3+4} \cdot [T]^{-2} = [M][L][T]^{-2}$。</li>
+<li><strong>结论</strong>：左右两边单位一致，公式在维度上是<strong>正确</strong>的。($D$的指数确实是4)。这意味着如果旋翼直径大一倍，升力会大16倍（$2^4$）！这就是为什么大型直升机效率高。</li>
+</ul>
+</li>
+</ul>
+</details>
+<p><strong>Q5 (生物 - 费米估算):</strong>
+估算一下：如果你把你身体里所有的血管（动脉、静脉、毛细血管）连成一条线，能绕地球赤道（约 4万公里）几圈？
+已知：血管总长度主要由微小的毛细血管贡献。毛细血管极细且充满了全身组织。人体体积约 $0.06 m^3$。假设平均每 $1 mm^3$ 的肉里有 100mm 长的毛细血管（这只是一个假设模型）。</p>
+<details>
+<summary>提示与答案</summary>
+<ul>
+<li><strong>提示</strong>：先把人体体积换算成 $mm^3$。$1 m^3 = 10^9 mm^3$。</li>
+<li><strong>答案</strong>：<ol>
+<li>人体体积 $\approx 6 \times 10^{10} mm^3$。</li>
+<li>血管总长 $\approx (6 \times 10^{10}) \times 100 \text{ mm} = 6 \times 10^{12} \text{ mm} = 6 \times 10^9 \text{ m}$。</li>
+<li>地球赤道 $4 \times 10^7 \text{ m}$。</li>
+<li>圈数 $= 6 \times 10^9 / 4 \times 10^7 = 150$ 圈。
+*   (真实科学数据：人体血管总长约 10万公里，约绕地球 2.5圈。我们的估算模型在密度上高估了，但在数量级上（$10^8$米量级）是接近的。这就是费米估算的魅力——不求精准，求数量级不偏。)</li>
+</ol>
+</li>
+</ul>
+</details>
+<hr />
+<h2 id="8-gotchas">8. 常见陷阱 (Gotchas) &amp; 调试技巧</h2>
+<p>| 错误现象 | 可能原因 | 调试/修正技巧 |</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">错误现象</th>
+<th style="text-align: left;">可能原因</th>
+<th style="text-align: left;">调试/修正技巧</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>结果大得离谱</strong></td>
+<td style="text-align: left;">单位没换算</td>
+<td style="text-align: left;">检查是否把 mm 当成了 m，或者把 g 当成了 kg。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>公式算出来单位不对</strong></td>
+<td style="text-align: left;">记错了公式</td>
+<td style="text-align: left;">使用<strong>维度分析</strong>。如果算速度却得到 $s/m$，说明你公式倒了。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>测量数据很“整齐”</strong></td>
+<td style="text-align: left;">伪造数据或精度过低</td>
+<td style="text-align: left;">真实世界是嘈杂的。如果你用千分尺测头发，读数全是 0.080，说明你在凑数，或者尺子坏了。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>不同人测出来不一样</strong></td>
+<td style="text-align: left;">缺乏标准</td>
+<td style="text-align: left;">比如量身高，有的穿鞋有的不穿。<strong>定义测量协议</strong>（Protocol）是实验的第一步。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9">9. 小项目：测量“不可测量”之物</h2>
+<p><strong>项目名称</strong>：纸张厚度与误差传播
+<strong>背景</strong>：你手头只有一把最小刻度为 1mm 的学生直尺。你需要测量一张 A4 纸的厚度（通常在 0.1mm 左右）。直接测是测不出来的（读数是0）。</p>
+<p><strong>任务</strong>：</p>
+<ol>
+<li><strong>累积法 (Accumulation)</strong>：数出 100 张（或更多）纸，叠整齐。</li>
+<li><strong>测量</strong>：用直尺测量这叠纸的总厚度 $H_{total}$。记录三次，求平均值。</li>
+<li><strong>计算</strong>：单张厚度 $h = H_{total} / N$。</li>
+<li><strong>思考误差</strong>：<ul>
+<li>如果数纸的时候数错了 1 张（数成 99 张），会对结果产生多大影响？</li>
+<li>如果纸中间夹了空气，没压紧，结果会偏大还是偏小？（系统误差）</li>
+</ul>
+</li>
+</ol>
+<p><strong>输出报告格式（Markdown）</strong>：</p>
+<div class="codehilite"><pre><span></span><code><span class="gu">### 实验报告：A4纸厚度测量</span>
+
+<span class="gs">**测量工具**</span>：刻度尺 (最小分度 1mm)
+<span class="gs">**样本数量 N**</span>：100 张
+
+<span class="gs">**数据记录**</span>：
+
+<span class="k">-</span><span class="w"> </span>第一次测量：1.05 cm (估读)
+<span class="k">-</span><span class="w"> </span>第二次测量：1.04 cm
+<span class="k">-</span><span class="w"> </span>第三次测量：1.06 cm
+<span class="k">-</span><span class="w"> </span>平均总厚度：1.05 cm = 10.5 mm
+
+<span class="gs">**计算结果**</span>：
+单张厚度 = 10.5 mm / 100 = 0.105 mm
+
+<span class="gs">**误差分析**</span>：
+纸张之间并未完全压实，包含微小空气层，因此测量值可能存在正向的系统误差（比真实值偏大）。
+</code></pre></div>
+            </article>
+            
+            <nav class="page-nav"><a href="index.html" class="nav-link prev">← 《从无人机到火箭：打通物理×数学×生物的初中科学教程》Index</a><a href="chapter2.html" class="nav-link next">Chapter 2｜坐标与运动：用函数描述飞行轨迹 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>
