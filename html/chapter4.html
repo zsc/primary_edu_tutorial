@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>Chapter 4｜流体与空气动力：风、升力与阻力</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <ul class="nav-list"><li class=""><a href="index.html">《从无人机到火箭：打通物理×数学×生物的初中科学教程》Index</a></li><li class=""><a href="chapter1.html">Chapter 1｜科学的共同语言：量、单位、误差与数量级</a></li><li class=""><a href="chapter2.html">Chapter 2｜坐标与运动：用函数描述飞行轨迹</a></li><li class=""><a href="chapter3.html">Chapter 3｜力与平衡：让机器飞起来，也要站得稳</a></li><li class="active"><a href="chapter4.html">Chapter 4｜流体与空气动力：风、升力与阻力</a></li><li class=""><a href="chapter5.html">Chapter 5｜能量与功率：电池、燃料与“续航”</a></li><li class=""><a href="chapter6.html">Chapter 6｜电与磁：机器的肌肉与神经</a></li><li class=""><a href="CLAUDE.html">Untitled</a></li></ul>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="chapter-4">Chapter 4｜流体与空气动力：风、升力与阻力</h1>
+<h2 id="40">4.0 开篇：在空气的海洋里游泳</h2>
+<p>你可能觉得空气“很轻”，甚至常常忽略它的存在。但在物理学和工程学的视角里，<strong>空气不是“空”的，它是一种粘稠的、有重量的流体</strong>。</p>
+<ul>
+<li>当你骑自行车冲下坡时，风在耳边呼啸，那是因为空气分子在疯狂撞击你的耳膜。</li>
+<li>当马斯克的“星舰”火箭返回地球时，它利用空气阻力刹车，摩擦产生的高温甚至能熔化钢铁。</li>
+<li>当你的无人机悬停时，它其实是在疯狂地“踩水”——只不过踩的是空气。</li>
+</ul>
+<p>在本章，我们将把空气视为一片<strong>看不见的海洋</strong>。无论是无人机的旋翼、火箭的整流罩，还是血管里的血液，都遵循同一套流体力学法则。</p>
+<p><strong>本章学习目标：</strong></p>
+<ol>
+<li><strong>物理直觉</strong>：理解压强、浮力、阻力（平方律）和升力（牛顿第三定律）。</li>
+<li><strong>数学工具</strong>：掌握“平方律”——为什么速度快一点点，能耗却要大很多？</li>
+<li><strong>工程连接</strong>：什么是火箭的 Max Q（最大动压）？为什么无人机降落时会“打滑”？</li>
+<li><strong>生命连接</strong>：从小飞虫到信天翁，生物如何适应不同的雷诺数环境。</li>
+</ol>
+<hr />
+<h2 id="41-max-q">4.1 压强：空气的重量与“Max Q”</h2>
+<h3 id="411-p-fs">4.1.1 基础模型：$P = F/S$</h3>
+<p>压强（Pressure）描述的是力的<strong>密集程度</strong>。</p>
+<ul>
+<li><strong>公式</strong>：$P = \frac{F}{S}$<ul>
+<li>$P$：压强（帕斯卡, Pa 或 N/m²）</li>
+<li>$F$：垂直作用力（牛顿, N）</li>
+<li>$S$：受力面积（平方米, m²）</li>
+</ul>
+</li>
+</ul>
+<p><strong>Rule-of-Thumb（经验法则）：</strong></p>
+<ul>
+<li>想要<strong>刺穿</strong>物体（针头、钉子）：减小 $S$ → 增大 $P$。</li>
+<li>想要<strong>不陷下去</strong>（雪地靴、坦克履带、火星车轮子）：增大 $S$ → 减小 $P$。</li>
+</ul>
+<h3 id="412">4.1.2 大气压：头顶的空气柱</h3>
+<p>我们生活在“空气海”的底部。海平面标准大气压约为 $101,325 \text{ Pa}$。这意味着在你的手掌上（大约 $0.01 \text{ m}^2$），空气压着相当于 <strong>100 公斤</strong> 的重量！你感觉不到是因为你体内的压力与之平衡。</p>
+<p><strong>随着高度的变化</strong>：</p>
+<ul>
+<li><strong>海拔每升高 1000 米，气压下降约 10%~12%</strong>。</li>
+<li><strong>工程挑战</strong>：<ul>
+<li><strong>无人机</strong>：在高海拔（如川西高原），空气稀薄，螺旋桨“抓”不到足够的空气分子，为了维持升力，电机必须转得更快，电池续航会大幅缩水。</li>
+<li><strong>食品包装</strong>：你在平原买的薯片，带到飞机上或高原上，袋子会胀得像气球——因为外面的气压小了，里面的气压还在推。</li>
+</ul>
+</li>
+</ul>
+<h3 id="413-max-q">4.1.3 进阶工程概念：Max Q（最大动压点）</h3>
+<p>这是火箭发射中最紧张的时刻。</p>
+<ul>
+<li>
+<p><strong>动压（Dynamic Pressure, $q$）</strong>：流体流动产生的压强。
+    $$q = \frac{1}{2} \rho v^2$$</p>
+</li>
+<li>
+<p>$\rho$ (rho)：空气密度（越往高空越小）。</p>
+<ul>
+<li>$v$：火箭速度（越飞越快）。</li>
+</ul>
+</li>
+<li>
+<p><strong>火箭的矛盾</strong>：</p>
+<ul>
+<li>刚起飞：速度 $v$ 很慢，动压小。</li>
+<li>入轨后：虽然速度 $v$ 极快，但空气密度 $\rho$ 几乎为0，动压也小。</li>
+<li><strong>中间某一点</strong>：火箭飞得很快，且空气还算稠密。这时 $q$ 达到峰值（Max Q）。</li>
+</ul>
+</li>
+<li><strong>结论</strong>：在 Max Q 时，火箭受到的空气撕扯力最大。为了防止解体，火箭通常会在此时<strong>主动减小油门</strong>，等过了这一点再全速冲刺。</li>
+</ul>
+<hr />
+<h2 id="42">4.2 浮力：阿基米德的领地</h2>
+<h3 id="421">4.2.1 谁在用浮力？</h3>
+<ul>
+<li><strong>公式</strong>：$F_{\text{浮}} = \rho_{\text{液}} \cdot g \cdot V_{\text{排}}$</li>
+<li><strong>关键点</strong>：浮力大小只和<strong>排开流体的重量</strong>有关，和物体本身的重量无关。</li>
+</ul>
+<h3 id="422">4.2.2 常见误区：无人机靠浮力吗？</h3>
+<ul>
+<li><strong>热气球/飞艇</strong>：靠浮力。因为它们的平均密度比空气小（$F_{\text{浮}} &gt; G$）。</li>
+<li><strong>无人机/飞机/火箭</strong>：<strong>绝对不靠浮力</strong>。它们的密度远大于空气。它们靠的是<strong>动力学升力</strong>（Aerodynamic Lift）。</li>
+</ul>
+<blockquote>
+<p><strong>生物连接：鱼鳔</strong>
+鱼可以通过调节鱼鳔里的气体量来改变体积，从而改变受到的浮力，实现不需要划水也能悬停。潜水艇也是模仿这个原理（压载水舱）。但无人机没有“空气鳔”，它必须时刻耗电来维持高度。</p>
+</blockquote>
+<hr />
+<h2 id="43">4.3 阻力：速度的平方律（核心数学模型）</h2>
+<p>这是本章最重要的数学概念。</p>
+<h3 id="431">4.3.1 阻力公式的直觉</h3>
+<p>当物体在流体中运动时，阻力 $F_d$ 遵循以下关系：
+$$F_d = \frac{1}{2} C_d \rho S v^2$$</p>
+<ul>
+<li>$C_d$：阻力系数（形状决定，流线型小，砖头型大）。</li>
+<li>$\rho$：空气密度。</li>
+<li>$S$：迎风面积（横截面）。</li>
+<li>$v^2$：<strong>速度的平方</strong>。</li>
+</ul>
+<h3 id="432-v2">4.3.2 为什么 $v^2$ 如此可怕？</h3>
+<p>在低速时（如走路），阻力很小。但在高速时，阻力是统治一切的力量。</p>
+<ul>
+<li><strong>2倍速度 = 4倍阻力</strong></li>
+<li><strong>3倍速度 = 9倍阻力</strong></li>
+<li><strong>10倍速度 = 100倍阻力</strong></li>
+</ul>
+<p><strong>工程推论（Trade-off）</strong>：</p>
+<ol>
+<li><strong>续航与速度</strong>：如果你让无人机飞得快一倍，你不仅需要 4 倍的推力，考虑到功率 $P = F \cdot v$，你的<strong>功率消耗会变成 8 倍</strong>（$v^3$关系）！所以，<strong>长续航无人机一定要飞得慢一点</strong>。</li>
+<li><strong>起落架</strong>：为什么飞机起飞后要收起起落架？因为在 800 km/h 的速度下，那几个轮子产生的阻力巨大，会像降落伞一样拖住飞机，极度费油。</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>ASCII 图示：形状与阻力系数 Cd
+------------------------------------------------
+形状          |  示意图        |  Cd (近似值)
+------------------------------------------------
+平板 (Flat)   |   |  --&gt;风     |  1.28 (极大)
+球体 (Sphere) |   O  --&gt;风     |  0.47
+水滴/流线型   |  &lt;O) --&gt;风     |  0.04 (极小!)
+------------------------------------------------
+*注：这就是为什么所有的快东西（雨滴、鱼、火箭、赛车）都长得像水滴。
+</code></pre></div>
+
+<hr />
+<h2 id="44">4.4 升力：把空气当成“踏脚石”</h2>
+<p>如果不能靠浮力，重物怎么飞？答案是：<strong>把空气扔下去，自己借力上去</strong>。</p>
+<h3 id="441">4.4.1 牛顿第三定律的直观解释</h3>
+<p>虽然伯努利原理（流速大压强小）在教科书里很常见，但对于旋翼无人机，<strong>牛顿第三定律（作用力与反作用力）</strong> 更直观，也更接近本质。</p>
+<ol>
+<li><strong>动作</strong>：螺旋桨旋转，像一个巨大的风扇，把空气<strong>猛烈地向下推</strong>。</li>
+<li><strong>反作用</strong>：被推下的空气给螺旋桨一个<strong>向上</strong>的力。
+$$F_{\text{升力}} \approx \text{向下推的空气质量/秒} \times \text{下推的速度}$$</li>
+</ol>
+<h3 id="442-angle-of-attack-aoa">4.4.2 攻角 (Angle of Attack, AoA)</h3>
+<p>把你的手伸出飞驰的车窗外（<strong>请注意安全！</strong>）：</p>
+<ul>
+<li>手掌放平：没什么感觉（阻力小，升力0）。</li>
+<li>手掌前端稍微抬起：你会感到一股巨大的力量把手<strong>往上托</strong>，同时往后推。</li>
+<li>这个抬起的角度就是<strong>攻角</strong>。</li>
+</ul>
+<p><strong>失速 (Stall)——飞行员的噩梦</strong>：
+如果你把手掌抬得太高（比如垂直竖起来），气流就变得乱七八糟（湍流），升力突然消失，只剩下巨大的阻力。这叫“失速”。飞机如果发生这种情况，会像石头一样掉下来。</p>
+<hr />
+<h2 id="45">4.5 环境连接：看不见的陷阱</h2>
+<p>空气动力学不仅关乎飞行器，还关乎环境。</p>
+<h3 id="451-ground-effect">4.5.1 地面效应 (Ground Effect)</h3>
+<p>当无人机或直升机降落到离地面很近（通常是旋翼直径的一半高度）时，被向下推的气流撞到地面反弹回来，在机身下形成了一个“高压气垫”。</p>
+<ul>
+<li><strong>现象</strong>：你会觉得无人机像滑在冰面上一样，不想落地，甚至会左右漂移。</li>
+<li><strong>操作技巧</strong>：降落的最后阶段要果断，不能犹豫，否则会被气垫托得乱飘。</li>
+</ul>
+<h3 id="452">4.5.2 城市峡谷与湍流</h3>
+<ul>
+<li><strong>层流 (Laminar)</strong>：像平静的河流，分层流动，阻力小。</li>
+<li><strong>湍流 (Turbulent)</strong>：像沸腾的水，乱七八糟。</li>
+<li><strong>场景</strong>：高楼大厦后方、大树后方。无人机飞过这些地方时，会突然掉高或翻滚，因为那里的空气是乱的，抓不住。</li>
+</ul>
+<hr />
+<h2 id="46">4.6 生物连接：大自然的设计图</h2>
+<h3 id="461-wing-loading">4.6.1 翼载荷 (Wing Loading)</h3>
+<p>$$\text{翼载荷} = \frac{\text{体重}}{\text{翅膀面积}}$$</p>
+<ul>
+<li><strong>滑翔派（信天翁）</strong>：体重一般，翅膀<strong>巨大</strong>。翼载荷极低。可以几天不拍翅膀，靠风就能飞。<ul>
+<li><em>对应工程</em>：滑翔机、太阳能无人机（追求极致效率）。</li>
+</ul>
+</li>
+<li><strong>暴力派（麻雀/大黄蜂）</strong>：体重不小，翅膀<strong>很小</strong>。翼载荷很高。必须拼命快速拍打翅膀才能不掉下来。<ul>
+<li><em>对应工程</em>：战斗机、赛用穿越机（追求速度和机动，不惜油耗）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="462-reynolds-number-re">4.6.2 雷诺数 (Reynolds Number, Re)</h3>
+<p>这是一个无量纲数，用来判断流体感觉起来是“稀的”还是“粘的”。
+$$Re = \frac{\text{惯性力}}{\text{粘性力}}$$</p>
+<ul>
+<li><strong>对于人/飞机</strong>：$Re$ 很大。空气感觉很稀，像水流。</li>
+<li><strong>对于果蝇</strong>：$Re$ 很小。空气感觉<strong>像糖浆</strong>！</li>
+<li><strong>结论</strong>：这就是为什么昆虫的翅膀不像飞机的机翼，而更像划船的桨。微型仿生机器人不能照抄大飞机的设计。</li>
+</ul>
+<hr />
+<h2 id="47">4.7 动手小项目：纸翼实验——探究“翼载荷”</h2>
+<p>用科学方法验证为什么滑翔机需要大翅膀。</p>
+<p><strong>材料</strong>：A4纸（多张）、回形针（作为配重）、剪刀、手机（秒表）、卷尺。</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li><strong>制作标准机</strong>：折一个宽翼的纸飞机（滑翔机型），用回形针夹住机头（保证重心靠前，飞行稳定）。</li>
+<li><strong>测量基准</strong>：记录机翼大概的面积 $S_1$，称量总质量 $m$（或数回形针个数）。</li>
+<li><strong>飞行测试 A</strong>：在同一高度（例如举过头顶）水平释放，记录飞行距离和滞空时间。重复3次取平均值。</li>
+<li><strong>修改变量（关键步骤）</strong>：<ul>
+<li>用剪刀剪掉机翼的后缘（减小面积到 $S_2$）。</li>
+<li><strong>重要</strong>：把剪下来的纸片折叠好，塞进机身或夹在回形针里。</li>
+<li><strong>目的</strong>：保持总质量 $m$ 不变！只改变面积 $S$。此时翼载荷 ($m/S$) 变大了。</li>
+</ul>
+</li>
+<li><strong>飞行测试 B</strong>：用同样的力度和高度发射。</li>
+<li><strong>对比数据</strong>：面积变小后，飞机是飞得更快了还是更慢了？是飞得更远了还是落地更快了？</li>
+</ol>
+<p><strong>预期结论</strong>：
+翼载荷越大（翅膀越小），为了产生同样的升力，飞机必须飞得<strong>更快</strong>（如果初始速度不够，它就会快速下坠）。滑翔性能通常会下降。</p>
+<hr />
+<h2 id="48">4.8 本章小结</h2>
+<ol>
+<li><strong>压强 $P=F/S$</strong>：尖锐物体压强大；高空大气压强小。</li>
+<li><strong>Max Q</strong>：火箭飞行中“速度快”与“空气稠”叠加的最危险时刻。</li>
+<li><strong>阻力平方律 $F \propto v^2$</strong>：速度翻倍，阻力翻四倍。高速是能量的黑洞。</li>
+<li><strong>升力原理</strong>：主要是牛顿第三定律——把空气向下推，空气把你向上托。</li>
+<li><strong>工程权衡</strong>：想要续航久（长翅膀、慢飞）；想要速度快（短翅膀、大推力、流线型）。</li>
+</ol>
+<hr />
+<h2 id="49">4.9 练习题</h2>
+<h3 id="_1">基础题</h3>
+<ol>
+<li>
+<p><strong>压强计算</strong>：
+    你的无人机重 10 N。如果不装螺旋桨直接放在泥地上，4条细细的起落架腿会陷进泥里。如果给每条腿穿上“雪地靴”（垫片），使总接触面积增大为原来的 10 倍。请问压强变成了原来的多少？
+    &gt; <strong>Hint</strong>: $P$ 和 $S$ 是反比关系。</p>
+</li>
+<li>
+<p><strong>阻力直觉</strong>：
+    一辆电动车以 30 km/h 骑行时，风阻是 $F$。为了赶时间，你加速到 60 km/h。现在的风阻大约是几 $F$？电池掉电速度会变快还是变慢？
+    &gt; <strong>Hint</strong>: 速度翻倍，$v^2$ 翻几倍？</p>
+</li>
+<li>
+<p><strong>高空飞行</strong>：
+    一架设计用于海平面飞行的无人机，被带到了海拔 5000 米的高原。这里的空气密度只有海平面的一半左右。为了悬停（产生同样的升力），螺旋桨的转速需要变快还是变慢？
+    &gt; <strong>Hint</strong>: 空气分子少了，为了推够同样多的分子下来，你得转得更勤快。</p>
+</li>
+</ol>
+<h3 id="_2">挑战题</h3>
+<ol start="4">
+<li>
+<p><strong>Max Q 逻辑分析</strong>：
+    如果火箭发射后一直垂直向上加速，且空气密度随高度均匀减小。
+    (A) 速度 $v$ 在不断增加。
+    (B) 密度 $\rho$ 在不断减小。
+    请解释为什么动压 $q = 0.5 \rho v^2$ 会先变大后变小？
+    &gt; <strong>Hint</strong>: 刚开始谁的变化占主导？后来谁变成了 0？</p>
+</li>
+<li>
+<p><strong>设计题：火星无人机</strong>：
+    火星大气密度只有地球的 1%。请利用本章学到的 $P=F/S$（翼载荷）或升力原理，提出两个让无人机在火星飞起来的工程改进方案。
+    &gt; <strong>Hint</strong>: 空气不够，什么来凑？要么把翅膀做大（$S$），要么转得疯快（$v$），要么...做得超级轻（$F$）？</p>
+</li>
+<li>
+<p><strong>数据分析</strong>：
+    你测试了某无人机的悬停功耗。</p>
+<ul>
+<li>无风时：100 W</li>
+<li>微风时：110 W</li>
+<li>强风时（且风向不稳定）：150 W
+除了风阻，还有什么原因导致强风时功耗大增？（结合“控制与反馈”思考）<blockquote>
+<p><strong>Hint</strong>: 无人机在强风中是静止不动的吗？飞控在做什么？</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<details>
+<summary>点击展开答案</summary>
+<ol>
+<li>
+<p><strong>答案</strong>：$1/10$（十分之一）。</p>
+<ul>
+<li>$P = F/S$。力 $F$ 不变（重力不变），面积 $S$ 变大10倍，压强 $P$ 变小10倍。这就是履带的作用。</li>
+</ul>
+</li>
+<li>
+<p><strong>答案</strong>：$4F$。掉电速度会非常快。</p>
+<ul>
+<li>$60/30 = 2$倍。阻力与速度平方成正比，$2^2=4$。</li>
+<li><strong>进阶</strong>：因为功率 $P = \text{阻力} \times \text{速度}$，阻力是4倍，速度是2倍，所以功率消耗其实是 <strong>8倍</strong>！</li>
+</ul>
+</li>
+<li>
+<p><strong>答案</strong>：变快。</p>
+<ul>
+<li>升力 $\propto \rho \cdot v^2$。如果密度 $\rho$ 减半，为了保持升力不变，速度 $v$（这里指桨叶切风的速度，即转速）必须增加。</li>
+</ul>
+</li>
+<li>
+<p><strong>答案</strong>：</p>
+<ul>
+<li><strong>发射初期</strong>：火箭在大气稠密区加速，$\rho$ 减小得慢，$v$ 增加得快（且是平方项），所以 $\rho v^2$ 快速增加。</li>
+<li><strong>发射后期</strong>：火箭进入高空，虽然 $v$ 极大，但空气密度 $\rho$ 迅速趋近于 0。任何数乘以 0 都是 0。</li>
+<li>所以在中间某处，二者博弈达到峰值。</li>
+</ul>
+</li>
+<li>
+<p><strong>答案</strong>：</p>
+<ul>
+<li>方案1：<strong>增大旋翼面积/长度</strong>（减小翼载荷）。</li>
+<li>方案2：<strong>极高的转速</strong>（NASA 机智号转速是地球无人机的5-6倍）。</li>
+<li>方案3：<strong>极致减重</strong>（机智号用碳纤维和特殊的轻量化电池）。</li>
+</ul>
+</li>
+<li>
+<p><strong>答案</strong>：</p>
+<ul>
+<li><strong>频繁调节</strong>：在强风和乱流中，无人机为了保持位置（抵抗风切变），电机必须不断地快速加速、减速来平衡姿态。这种频繁的加减速（克服惯性）比稳定旋转更费电。</li>
+<li><strong>倾斜分力</strong>：为了抵消侧风，无人机必须倾斜机身，这意味着升力的一部分被用来对抗风力，为了维持高度，必须增加总推力。</li>
+</ul>
+</li>
+</ol>
+</details>
+<hr />
+<h2 id="410-gotchas">4.10 常见陷阱 (Gotchas)</h2>
+<h3 id="1">陷阱 1：伯努利原理的错误解释（等时性谬误）</h3>
+<ul>
+<li><strong>错误说法</strong>：“空气流过机翼上方和下方的时间必须相等，因为路程长，所以上方流速快。”</li>
+<li><strong>真相</strong>：流过上方的空气<strong>甚至跑得更快</strong>，它们不会在尾部同时汇合！虽然伯努利方程是对的（流速高压强低），但解释“为什么流速高”时，请慎用“等时性”理论。工程上更看重<strong>气流偏转（牛顿第三定律）</strong>。</li>
+</ul>
+<h3 id="2">陷阱 2：在真空中我也能飞？</h3>
+<ul>
+<li><strong>误区</strong>：有人以为螺旋桨在真空中转得更快（因为没阻力），所以飞得更好。</li>
+<li><strong>真相</strong>：在真空中，螺旋桨转得确实快（如果是电动机），但<strong>没有任何升力</strong>。没有空气分子可推，就像在真空中划船一样，一步也动不了。只有喷气（抛出自带物质）的火箭能在真空中飞。</li>
+</ul>
+<h3 id="3">陷阱 3：流线型就一定好？</h3>
+<ul>
+<li><strong>误区</strong>：所有东西都要做成水滴形。</li>
+<li><strong>真相</strong>：<strong>高尔夫球</strong>表面坑坑洼洼反而飞得远。这涉及更高级的“边界层”控制。在特定速度下，粗糙表面能延缓气流分离，反而减小阻力。不过对于大多数初中物理场景，光滑流线型是减阻首选。</li>
+</ul>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter3.html" class="nav-link prev">← Chapter 3｜力与平衡：让机器飞起来，也要站得稳</a><a href="chapter5.html" class="nav-link next">Chapter 5｜能量与功率：电池、燃料与“续航” →</a></nav>
+        </main>
+    </div>
+</body>
+</html>
